@@ -1,0 +1,8 @@
+{
+  "name": "notext",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "94a8dad3"
+}
