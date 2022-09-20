@@ -16,7 +16,6 @@ export class Tab2Page implements OnInit{
 
   ngOnInit(){
     this.loadFiles();
-
     VoiceRecorder.requestAudioRecordingPermission();
   }
 
@@ -34,6 +33,7 @@ export class Tab2Page implements OnInit{
     if (this.recording){
       return;
     }
+    console.log("ei");
     this.recording = true;
     VoiceRecorder.startRecording();
   }
@@ -41,11 +41,13 @@ export class Tab2Page implements OnInit{
   stopRecording(){
     if (!this.recording){
       return;
-    } 
+    }
+    console.log("jooo");
     VoiceRecorder.stopRecording().then(async (result: RecordingData) => {
       if(result.value && result.value.recordDataBase64){
         const recordData = result.value.recordDataBase64;
         console.log("toimiiiii");
+        console.log(recordData);
         const fileName = new Date().getTime() + ".wav";
         await Filesystem.writeFile({
           path: fileName,
@@ -54,7 +56,18 @@ export class Tab2Page implements OnInit{
         });
         this.loadFiles();
       }
-    }
+    })
+  }
+
+  async playFile(fileName){
+    const audioFile = await Filesystem.readFile({
+      path: fileName,
+      directory: Directory.Data
+    });
+    const base64Sound = audioFile.data;
+    const audioRef = new Audio(`data:audio/aac;base64,${base64Sound}`)
+    audioRef.oncanplaythrough = () => audioRef.play();
+    audioRef.load();
   }
 
 }

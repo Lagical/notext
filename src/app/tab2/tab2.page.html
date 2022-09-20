@@ -7,6 +7,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-<ion-button (click)="startRecording" expand="full">Start recording</ion-button>
-<ion-button (click)="stopRecording" expand="full" color="danger">Stop recording</ion-button>
+<ion-button (click)="startRecording()"  expand="full">Start recording</ion-button>
+<ion-button (click)="stopRecording()" expand="full" color="danger">Stop recording</ion-button>
+
+<ion-list>
+<ion-item button *ngFor="let f of storedFileNames" (click)="playFile(f)">
+  {{f}}
+</ion-item> 
+</ion-list>
+
 </ion-content>
