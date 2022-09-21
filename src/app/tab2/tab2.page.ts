@@ -24,7 +24,6 @@ export class Tab2Page implements OnInit{
       path: '',
       directory: Directory.Data
     }).then(result =>{
-      console.log(result);
       this.storedFileNames = result.files;
     });
   }
@@ -33,7 +32,6 @@ export class Tab2Page implements OnInit{
     if (this.recording){
       return;
     }
-    console.log("ei");
     this.recording = true;
     VoiceRecorder.startRecording();
   }
@@ -42,12 +40,9 @@ export class Tab2Page implements OnInit{
     if (!this.recording){
       return;
     }
-    console.log("jooo");
     VoiceRecorder.stopRecording().then(async (result: RecordingData) => {
       if(result.value && result.value.recordDataBase64){
         const recordData = result.value.recordDataBase64;
-        console.log("toimiiiii");
-        console.log(recordData);
         const fileName = new Date().getTime() + ".wav";
         await Filesystem.writeFile({
           path: fileName,
@@ -55,6 +50,7 @@ export class Tab2Page implements OnInit{
           data: recordData
         });
         this.loadFiles();
+        this.recording = false;
       }
     })
   }
@@ -65,7 +61,7 @@ export class Tab2Page implements OnInit{
       directory: Directory.Data
     });
     const base64Sound = audioFile.data;
-    const audioRef = new Audio(`data:audio/aac;base64,${base64Sound}`)
+    const audioRef = new Audio("data:audio/wav;base64," + base64Sound);
     audioRef.oncanplaythrough = () => audioRef.play();
     audioRef.load();
   }

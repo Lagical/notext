@@ -11,8 +11,8 @@
 <ion-button (click)="stopRecording()" expand="full" color="danger">Stop recording</ion-button>
 
 <ion-list>
-<ion-item button *ngFor="let f of storedFileNames" (click)="playFile(f)">
-  {{f}}
+<ion-item button *ngFor="let f of storedFileNames" (click)="playFile(f.name)">
+  {{f.name}}
 </ion-item> 
 </ion-list>
 
