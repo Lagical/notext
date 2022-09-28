@@ -13,6 +13,8 @@ export class Tab2Page implements OnInit{
   recording = false;
   storedFileNames = [];
   audioName = "";
+  showStart = true;
+  showStop = false;
 
   constructor(private alertController: AlertController) {}
 
@@ -66,6 +68,8 @@ export class Tab2Page implements OnInit{
         {
             text: 'Ok',
             handler: (alertData) => {
+                this.showStart = false;
+                this.showStop = true;
                 this.audioName = alertData.input;
                 VoiceRecorder.startRecording();
             }
@@ -73,7 +77,7 @@ export class Tab2Page implements OnInit{
     ]
     });
     const alert2 = await this.alertController.create({
-      header: 'Alert!',
+      header: 'Delete audio',
       message: 'Are you sure you want to delete this audio?',
       buttons: [
         {
@@ -118,6 +122,8 @@ export class Tab2Page implements OnInit{
         });
         this.loadFiles();
         this.recording = false;
+        this.showStart = true;
+        this.showStop = false;
       }
     })
   }

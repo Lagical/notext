@@ -9,6 +9,12 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+ ion-button[shape=circle] {
+    --border-radius: 50%;
+    width: 76px;
+    height: 76px;
+}
+
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
 
