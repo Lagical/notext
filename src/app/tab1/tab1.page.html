@@ -7,9 +7,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">User posts</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+  <h3>Your public posts</h3>
+  <ion-list>
+  <ion-item *ngFor="let f of storedFileNames">
+  <ion-button fill="clear" (click)="playFile(f.name)"><ion-icon name="play"></ion-icon></ion-button>
+    {{f.name}}
+    <ion-button  fill="clear" (click)="giveLike(f.name)"><ion-icon name="heart"></ion-icon></ion-button>
+    <ion-button  fill="clear" (click)="giveLike(f.name)"><ion-icon name="share-social"></ion-icon></ion-button>
+    <ion-button  fill="clear" (click)="giveLike(f.name)"><ion-icon name="chatbubble-ellipses"></ion-icon></ion-button>
+  </ion-item> 
+  </ion-list>

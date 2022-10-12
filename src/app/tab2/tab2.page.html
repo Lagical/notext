@@ -9,9 +9,9 @@
 <ion-content [fullscreen]="true">
 <ion-list>
 <ion-item *ngFor="let f of storedFileNames">
-<ion-button (click)="playFile(f.name)"><ion-icon name="play-outline"></ion-icon></ion-button>
+<ion-button fill="clear" (click)="playFile(f.name)"><ion-icon name="play"></ion-icon></ion-button>
 <ion-button (click)="publishAudio()">Publish</ion-button>
-<ion-button color="danger" (click)="presentAlert('remove', f.name)"><ion-icon name="trash-outline"></ion-icon></ion-button>
+<ion-button fill="clear" color="danger" (click)="presentAlert('remove', f.name)"><ion-icon name="trash-outline"></ion-icon></ion-button>
   {{f.name}}
 </ion-item> 
 </ion-list>

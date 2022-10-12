@@ -17,7 +17,7 @@ export class Tab2Page implements OnInit{
   showStop = false;
 
   constructor(private alertController: AlertController) {}
-
+  
   ngOnInit(){
     this.loadFiles();
     VoiceRecorder.requestAudioRecordingPermission();
